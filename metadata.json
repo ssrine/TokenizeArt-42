@@ -1,0 +1,11 @@
+{
+  "name": "NelHark42 NFT",
+  "description": "My first NFT for 42 project",
+  "image": "ipfs://bafybeievtj6y57t6ezjuyr2b7gf2w7z2drqk5nnde5ewuglgywz32gz4jq",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "nel-hark"
+    }
+  ]
+}

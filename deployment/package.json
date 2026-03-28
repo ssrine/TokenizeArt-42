@@ -1,0 +1,38 @@
+{
+  "name": "tokenizeart-nft",
+  "version": "1.0.0",
+  "description": "Professional ERC721 NFT implementation for the TokenizeArt project",
+  "main": "hardhat.config.js",
+  "scripts": {
+    "copy": "node copy-contracts.js",
+    "deploy": "npm run copy && cross-env NODE_PATH=./node_modules hardhat run deploy.js --network sepolia",
+    "mint": "cross-env NODE_PATH=./node_modules node ../mint/mint.js",
+    "compile": "npm run copy && cross-env NODE_PATH=./node_modules hardhat compile",
+    "clean": "hardhat clean"
+  },
+  "keywords": [
+    "ethereum",
+    "solidity",
+    "erc721",
+    "nft",
+    "hardhat",
+    "openzeppelin",
+    "blockchain",
+    "smart-contract",
+    "42school",
+    "ipfs"
+  ],
+  "author": "nel-hark 42 Student",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0",
+    "ethers": "^6.7.1"
+  },
+  "devDependencies": {
+    "hardhat": "^2.22.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.0",
+    "dotenv": "^16.0.3",
+    "cross-env": "^7.0.3"
+  }
+}
