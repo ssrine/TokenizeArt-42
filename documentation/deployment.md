@@ -24,7 +24,6 @@ Deploy NelHarkNFT42 to Sepolia testnet.
 
 ```bash
 cd deployment
-npm install
 npm run deploy
 ```
 
@@ -35,7 +34,6 @@ Output: Contract address saved to `deployment-info.json`
 ```bash
 npm run deploy    # Deploy contract
 npm run mint      # Mint NFT
-npm run interact  # Query contract
 npm run compile   # Compile only
 ```
 
