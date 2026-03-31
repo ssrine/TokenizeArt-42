@@ -1,76 +1,119 @@
-# TokenizeArt - ERC721 NFT Contract
+# TokenizeArt - ERC721 NFT
 
-Professional ERC721 NFT smart contract on Ethereum Sepolia with IPFS metadata integration.
+ERC721 NFT contract on Ethereum Sepolia with IPFS metadata.
+
+---
+
+## Contract Details
+
+| Property | Value                                      |
+| -------- | ------------------------------------------ |
+| Name     | NelHarkNFT42                               |
+| Symbol   | NH42NFT                                    |
+| Address  | 0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B |
+| Owner    | 0x09f963232EEF8b4a25752AeF491d695d287ff6F3 |
+| Network  | Sepolia                                    |
+
+---
+
+## NFT Metadata & Image
+
+### Metadata (IPFS JSON)
+
+https://gateway.pinata.cloud/ipfs/bafkreiby4bfe23bdaheoh6nocs3vovrlj4733e2ovc5s7tefdlv55p4tci
+
+This JSON file contains:
+
+* NFT name (includes "42")
+* Description
+* Artist attribute (nel-hark)
+* Image reference stored on IPFS
+
+### NFT Image (IPFS)
+
+https://gateway.pinata.cloud/ipfs/bafybeievtj6y57t6ezjuyr2b7gf2w7z2drqk5nnde5ewuglgywz32gz4jq
+
+The image includes the number "42" as required by the subject.
+
+### IPFS URIs used in contract
+
+* Metadata URI: ipfs://bafkreiby4bfe23bdaheoh6nocs3vovrlj4733e2ovc5s7tefdlv55p4tci
+* Image URI: ipfs://bafybeievtj6y57t6ezjuyr2b7gf2w7z2drqk5nnde5ewuglgywz32gz4jq
+
+IPFS ensures decentralized and immutable storage of both metadata and image, as required by the project.
+
+---
+
+## NFT Verification
+
+After minting, the ownership of the NFT can be verified using the `ownerOf` function.
+
+Example:
+
+* Token ID: 0
+* Owner: 0x09f963232EEF8b4a25752AeF491d695d287ff6F3
+
+This confirms that the NFT was successfully minted and assigned to the correct address.
+
+---
+
+## Blockchain Choice
+
+Although the subject mentions BNB Chain, I chose Ethereum Sepolia testnet for the following reasons:
+
+* ERC721 is the original and most widely adopted NFT standard
+* Better tooling and documentation (Hardhat, Ethers.js, OpenZeppelin)
+* Sepolia provides a stable and widely supported testnet environment
+* The implementation remains fully compatible with BEP-721, as both standards are technically identical
+
+This choice ensures reliability, security, and easier evaluation while respecting NFT standards.
+
+---
 
 ## Quick Start
 
 ```bash
 cd deployment
 npm install
-npm run deploy   # Deploy contract
-npm run mint     # Mint NFT
+
+# Deploy contract
+npm run deploy
+
+# Mint NFT
+npm run mint
 ```
 
-## Contract Details
-
-| Property | Value |
-|----------|-------|
-| Name | NelHarkNFT42 |
-| Symbol | NH42NFT |
-| Network | Sepolia Testnet |
-| Address | `0x53F8AA4c16DBd787a906c762E091180CCF0B0338` |
-| Status | ✅ Live |
-
-**Etherscan:** https://sepolia.etherscan.io/address/0x53F8AA4c16DBd787a906c762E091180CCF0B0338
+---
 
 ## Setup
 
-### Prerequisites
-- Node.js installed
-- `.env` file in `deployment/` with:
-  ```
-  PRIVATE_KEY=0xYourPrivateKey
-  SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YourInfuraKey
-  ```
-- Free ETH: https://sepoliafaucet.com
+**Prerequisites:**
 
-### Deploy
-```bash
-npm run deploy
+* Node.js v18+
+* `.env` in `deployment/`:
+
 ```
-Creates `deployment-info.json` with contract address.
-
-## Minting
-
-### Mint NFT
-```bash
-npm run mint
+PRIVATE_KEY=0xYourKey
+SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YourKey
 ```
 
-Update IPFS URI in `mint/mint.js`:
-```javascript
-const metadataIPFSCID = "your-ipfs-cid-here";
-```
+**Get testnet ETH:** https://sepoliafaucet.com
 
-## Documentation
+---
 
-- [Deployment Guide](documentation/deployment.md)
-- [Contract Reference](documentation/contract.md)
-- [Minting Guide](documentation/interact.md)
-- [Whitepaper](documentation/whitepaper.md)
+## Scripts
 
-**Step 3:** Run mint script
+### Deploy (`deployment/deploy.js`)
 
-```bash
-cd deployment
-npm run mint
-```
+Compiles and deploys the contract. Saves details to `deployment-info.json`.
 
-This will:
-- Connect to deployed NFT contract
-- Mint NFT #0 to your address
-- Verify ownership
-- Display token URI
+### Mint (`mint/mint.js`)
+
+Mints NFT with IPFS metadata URI and verifies ownership.
+
+### Interact
+
+Query contract state and verify tokens.
 
 ---
 
@@ -80,155 +123,84 @@ This will:
 TokenizeArt-42/
 ├── code/
 │   └── contracts/
-│       └── NelHarkNFT42.sol        (ERC721 NFT contract)
+│       └── NelHarkNFT42.sol
 ├── deployment/
-│   ├── .env                        (Private key & RPC URL)
-│   ├── package.json                (npm scripts & dependencies)
-│   ├── hardhat.config.js           (Sepolia network config)
-│   ├── deploy.js                   (Deploy NFT contract)
-│   ├── copy-contracts.js           (Copy contracts for compilation)
-│   └── deployment-info.json        (Deployment details)
+│   ├── .env
+│   ├── package.json
+│   ├── hardhat.config.js
+│   ├── deploy.js
+│   └── deployment-info.json
 ├── mint/
-│   └── mint.js                     (NFT minting script)
-├── metadata.json                   (NFT metadata template)
+│   └── mint.js
+├── metadata.json
 ├── documentation/
-│   ├── deployment.md               (Deployment guide)
-│   ├── nft-guide.md                (ERC721 NFT guide)
-│   └── whitepaper.md               (Whitepaper)
-└── README.md                       (This file)
+└── README.md
 ```
 
 ---
 
 ## How It Works
 
-1. **Contract Code** → `/code/contracts/NelHarkNFT42.sol` — Solidity smart contract
-2. **Deployment Script** → `/deployment/deploy.js` — Hardhat script deploys to Sepolia
-3. **Minting Script** → `/mint/mint.js` — ethers.js script interacts with deployed contract
-4. **Configuration** → `.env` file with private key & RPC endpoint
-5. **Network** → Sepolia testnet (free test ETH blockchain)
-6. **Storage** → Contract address saved in `deployment-info.json` after deploy
+1. Smart contract defines NFT logic (ERC721)
+2. Deployment script publishes contract on Sepolia
+3. Metadata and image are stored on IPFS
+4. Mint script creates NFT and assigns ownership
+5. Ownership can be verified on-chain using `ownerOf`
 
 ---
 
-## Contract Details
+## Contract Functions
 
-### NelHarkNFT42 (ERC721)
-
-| Function | Access | Purpose |
-|----------|--------|----------|
-| `mintNFT(to, tokenURI)` | Owner | Mint new NFT |
-| `ownerOf(tokenId)` | Public | Get token owner |
-| `tokenURI(tokenId)` | Public | Get metadata URI |
-| `getTokenIdCounter()` | Public | Get total mints |
+| Function              | Purpose           |
+| --------------------- | ----------------- |
+| mintNFT(to, tokenURI) | Mint new NFT      |
+| ownerOf(tokenId)      | Get NFT owner     |
+| tokenURI(tokenId)     | Get metadata      |
+| getTokenIdCounter()   | Total minted NFTs |
 
 ---
 
-## Verification
+## Verification Links
 
-### View on Block Explorer
-
-After deployment:
-
-1. **ERC721 NFT:** https://sepolia.etherscan.io/address/0xYourNFTAddress
-
-### View IPFS Metadata
-
-```
-https://gateway.pinata.cloud/ipfs/YOUR_IPFS_CID
-```
+* Contract: https://sepolia.etherscan.io/address/0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B
+* Transaction: https://sepolia.etherscan.io/tx/0xf62ebdd26ad5644d84329cd676f55907dcacda41e9025e0601da8741f48983f8
 
 ---
 
 ## Tech Stack
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| Solidity | 0.8.20 | Smart contract language |
-| Hardhat | 2.22.0 | Development framework |
-| OpenZeppelin | 5.0.0 | Secure contract libraries |
-| ethers.js | v6 | Blockchain interaction |
-| Node.js | 16+ | JavaScript runtime |
-
----
-
-## Commands
-
-| Command | Purpose |
-|---------|---------|
-| `npm run deploy` | Deploy NFT contract to Sepolia |
-| `npm run compile` | Compile contracts |
-| `npm run mint` | Mint NFT |
-| `npm run clean` | Remove build artifacts |
-
----
-
-## Documentation
-
-- [Deployment Guide](documentation/deployment.md) — Step-by-step deployment
-- [ERC721 NFT Guide](documentation/nft-guide.md) — Complete NFT minting guide
-- [Whitepaper](documentation/whitepaper.md) — Project whitepaper
+* Solidity ^0.8.20
+* OpenZeppelin Contracts
+* Hardhat
+* ethers.js
+* IPFS
 
 ---
 
 ## Security Considerations
 
-✅ **OnlyOwner Control** — Only contract owner can mint NFTs
-✅ **Input Validation** — Zero address checks, non-empty URI validation
-✅ **Safe Minting** — Uses `_safeMint()` to prevent accidents
-✅ **Audited Libraries** — OpenZeppelin audited implementations
-✅ **Immutable Metadata** — Once set, NFT URIs cannot be changed
+* Only owner can mint NFTs
+* Safe minting using `_safeMint`
+* Input validation for address and URI
+* OpenZeppelin audited contracts
 
 ---
 
 ## Network Information
 
-| Property | Value |
-|----------|-------|
-| **Network** | Ethereum Sepolia Testnet |
-| **Chain ID** | 11155111 |
-| **RPC URL** | https://sepolia.infura.io/v3/YOUR_KEY |
-| **Block Explorer** | https://sepolia.etherscan.io |
-| **Test Faucet** | https://sepoliafaucet.com |
+| Property | Value                    |
+| -------- | ------------------------ |
+| Network  | Ethereum Sepolia Testnet |
+| Chain ID | 11155111                 |
 
 ---
 
-## Troubleshooting
+## Conclusion
 
-| Issue | Solution |
-|-------|----------|
-| `deployment-info.json not found` | Run `npm run deploy` first |
-| `Contract ABI not found` | Run `npm run compile` first |
-| Minting fails with permission error | Only contract owner can mint |
-| Metadata not loading on IPFS | Verify CID is correct and file is accessible |
+This project demonstrates the complete lifecycle of an NFT:
 
----
-
-## Next Steps
-
-1. ✅ Deploy ERC721 NFT contract
-2. ✅ Upload metadata.json to IPFS
-3. ✅ Mint your first NFT
-4. View on Etherscan and OpenSea
-5. Create multiple NFT editions with different metadata
-6. Deploy to Ethereum mainnet when ready
-
----
-
-## References
-
-- [Solidity Documentation](https://docs.soliditylang.org/)
-- [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts/5.x/)
-- [Hardhat Documentation](https://hardhat.org/docs)
-- [ethers.js Documentation](https://docs.ethers.org/v6/)
-- [IPFS & NFT Metadata Standard](https://docs.opensea.io/docs/metadata-standards)
-- [ERC721 Standard](https://eips.ethereum.org/EIPS/eip-721)
-- [ERC20 Standard](https://eips.ethereum.org/EIPS/eip-20)
-
----
-
-**Project:** TokenizeArt - ERC721 NFT  
-**Version:** 1.0.0  
-**License:** MIT  
-**Network:** Ethereum Sepolia  
-**Updated:** 2026-03-28
+* Creation of image and metadata
+* Storage on IPFS
+* Smart contract deployment
+* NFT minting
+* Ownership verification

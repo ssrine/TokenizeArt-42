@@ -1,302 +1,99 @@
-# TokenizeArt - ERC721 NFT Contract Guide
+# NFT Guide
 
-## Overview
+Complete guide to mint NFTs on NelHarkNFT42 contract.
 
-The **NelHarkNFT42** is an ERC721-based NFT contract that allows minting unique digital art pieces with IPFS-hosted metadata and images.
+## Contract
 
----
+| Property | Value |
+|----------|-------|
+| Address | [`0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B`](https://sepolia.etherscan.io/address/0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B) |
+| Name | NelHarkNFT42 |
+| Owner | `0x09f963232EEF8b4a25752AeF491d695d287ff6F3` |
+| Network | Sepolia |
+| Standard | ERC721URIStorage |
 
-## Contract Details
+## Core Functions
 
-### NelHarkNFT42.sol
+**mintNFT(address to, string memory nftTokenURI)**
+- Mint NFT with IPFS metadata URI
+- Owner-only access
+- Returns token ID
 
-**Key Features:**
-- ERC721 standard with URI storage
-- Only owner can mint NFTs
-- Custom metadata URI per token
-- Token counter to track minted NFTs
-- Full owner verification support
+**tokenURI(uint256 tokenId)**
+- Get metadata URI for token
 
-**Contract Functions:**
+**ownerOf(uint256 tokenId)**
+- Get token owner address
 
-#### `mintNFT(address to, string memory tokenURI) → uint256`
-- **Purpose:** Mint a new NFT with metadata
-- **Parameters:**
-  - `to`: Recipient address
-  - `tokenURI`: IPFS link to metadata (format: `ipfs://CIDhere`)
-- **Returns:** Token ID of minted NFT
-- **Access:** Owner only
-- **Example:**
-  ```solidity
-  uint256 tokenId = nft.mintNFT(
-    "0x...",
-    "ipfs://QmYourMetadataCID"
-  );
-  ```
+**getTokenIdCounter()**
+- Get total minted tokens
 
-#### `ownerOf(uint256 tokenId) → address`
-- **Purpose:** Get the owner of a token
-- **Parameters:**
-  - `tokenId`: Token ID
-- **Returns:** Address of the token owner
+## Setup
 
-#### `tokenURI(uint256 tokenId) → string`
-- **Purpose:** Get the metadata URI for a token
-- **Parameters:**
-  - `tokenId`: Token ID
-- **Returns:** IPFS URI pointing to metadata
+1. **Get test ETH:** https://sepoliafaucet.com
+2. **Configure** `deployment/.env`:
+   ```
+   PRIVATE_KEY=0xYourKey
+   SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YourKey
+   ```
 
-#### `getTokenIdCounter() → uint256`
-- **Purpose:** Get the current token ID counter
-- **Returns:** Total number of tokens minted
+## Mint NFT
 
----
+### Step 1: Prepare IPFS Metadata
 
-## Project Structure
-
-```
-TokenizeArt-42/
-├── code/
-│   └── contracts/
-│       ├── NelHark42.sol           (ERC20 token)
-│       └── NelHarkNFT42.sol        (ERC721 NFT)
-├── deployment/
-│   ├── .env                        (Private key & RPC URL)
-│   ├── package.json                (Scripts & dependencies)
-│   ├── hardhat.config.js           (Network config)
-│   ├── deploy.js                   (Deploy both contracts)
-│   ├── interact.js                 (ERC20 demo)
-│   ├── copy-contracts.js           (Copy contracts for compilation)
-│   ├── deployment-info.json        (ERC20 deployment details)
-│   └── nft-deployment-info.json    (ERC721 deployment details)
-├── mint/
-│   └── mint.js                     (NFT minting script)
-├── metadata.json                   (NFT metadata template)
-└── documentation/
-    ├── contract.md                 (ERC20 details)
-    ├── deployment.md               (Deployment guide)
-    ├── interact.md                 (ERC20 demo guide)
-    └── nft-guide.md                (This file)
-```
-
----
-
-## Setup & Deployment
-
-### 1. Prerequisites
-
-Ensure you have:
-- Node.js installed
-- `.env` file in `deployment/` folder with:
-  ```
-  SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/YOUR_INFURA_KEY
-  PRIVATE_KEY=your_private_key
-  ```
-
-### 2. Install Dependencies
-
-```bash
-cd deployment
-npm install
-```
-
-### 3. Compile Contracts
-
-```bash
-npm run compile
-```
-
-This will:
-- Copy contracts from `../code/contracts/` to `./contracts/`
-- Compile both ERC20 and ERC721 contracts
-- Generate ABIs in `artifacts/contracts/`
-
-### 4. Deploy Both Contracts
-
-```bash
-npm run deploy
-```
-
-This will:
-- Deploy **NelHark42** (ERC20)
-- Deploy **NelHarkNFT42** (ERC721)
-- Save deployment info to:
-  - `deployment-info.json` (ERC20)
-  - `nft-deployment-info.json` (ERC721)
-
-**Example output:**
-```
-================== Deploying NelHark42 ERC20 ==================
-
-✅ NelHark42 (ERC20) deployed:
-  Contract Address: 0x1234...
-  Owner Address:    0x5678...
-  Total Supply:     1000.0 NH42
-
-================== Deploying NelHarkNFT42 ERC721 ==================
-
-✅ NelHarkNFT42 (ERC721) deployed:
-  Contract Address: 0xabcd...
-  Owner Address:    0x5678...
-```
-
----
-
-## IPFS Metadata Setup
-
-### 1. Prepare Metadata
-
-The `metadata.json` file defines the NFT properties:
-
+Create `metadata.json`:
 ```json
 {
-  "name": "NelHarkNFT42 - Genesis",
-  "description": "A unique digital art piece from the TokenizeArt collection.",
-  "image": "ipfs://bafybeievtj6y57t6ezjuyr2b7gf2w7z2drqk5nnde5ewuglgywz32gz4jq",
+  "name": "NelHark42 NFT",
+  "description": "Professional ERC721 NFT",
+  "image": "ipfs://your-image-cid",
   "attributes": [
-    {
-      "trait_type": "Artist",
-      "value": "nel-hark"
-    },
-    {
-      "trait_type": "Collection",
-      "value": "TokenizeArt"
-    },
-    {
-      "trait_type": "Edition",
-      "value": "42"
-    }
+    {"trait_type": "Artist", "value": "nel-hark"}
   ]
 }
 ```
 
-### 2. Upload to IPFS
+Upload to IPFS (Pinata, NFT.storage, etc.) and get CID.
 
-Options:
-- **Pinata** (Recommended): https://pinata.cloud
-- **NFT.storage**: https://nft.storage
-- **IPFS Desktop**: https://github.com/ipfs-tech/ipfs-desktop
+### Step 2: Update mint.js
 
-**Steps:**
-1. Upload `metadata.json` to IPFS
-2. Get the Content Identifier (CID)
-3. Update `mint.js` with the CID:
-   ```javascript
-   const metadataIPFSCID = "YOUR_METADATA_CID_HERE";
-   const tokenURI = `ipfs://${metadataIPFSCID}`;
-   ```
-
----
-
-## Minting NFTs
-
-### 1. Update Metadata CID
-
-In `mint/mint.js`, replace the placeholder CID:
-
+In `mint/mint.js` line 47, replace CID:
 ```javascript
-// Before:
-const metadataIPFSCID = "QmYourMetadataIPFSCIDHere";
-
-// After:
-const metadataIPFSCID = "QmActualCIDFromIPFS";
+const metadataIPFSCID = "bafkreiby4bfe23bdaheoh6nocs3vovrlj4733e2ovc5s7tefdlv55p4tci";
 ```
 
-### 2. Run Mint Script
+### Step 3: Mint
 
 ```bash
+cd deployment
 npm run mint
 ```
 
-**Expected output:**
-```
-================== NelHarkNFT42 Minting ==================
+Output: Token ID, transaction hash, owner, URI
 
-Using deployed contract at: 0xabcd...
-Owner Address:              0x5678...
-
-Step 1: Check Token Counter
-----------------------------
-  Current token ID counter: 0
-
-Step 2: Mint NFT
------------------
-  Recipient:     0x5678...
-  Token URI:     ipfs://QmYourMetadata...
-  Token ID:      0
-  Minting NFT...
-  Transaction hash: 0x1234...
-  ✅ NFT minted successfully!
-
-Step 3: Verify Minting
-----------------------
-  ✅ Token verification:
-    Token ID:     0
-    Owner:        0x5678...
-    Token URI:    ipfs://QmYourMetadata...
-    Owner match:  ✅ Yes
-```
-
----
-
-## Verification
-
-### View on Block Explorer
-
-After deployment and minting:
-
-1. **Contract**: https://sepolia.etherscan.io/address/0xYourNFTAddress
-2. **Token**: View token #0 on Etherscan
-3. **Metadata**: Accessible via IPFS gateway: `https://gateway.pinata.cloud/ipfs/YOUR_CID`
-
-### Verify on-chain
+## Verify
 
 ```bash
-# Check token owner
-etherscan-cli contract:read NelHarkNFT42 ownerOf 0
+# View on Etherscan
+https://sepolia.etherscan.io/address/0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B
 
-# Check token URI
-etherscan-cli contract:read NelHarkNFT42 tokenURI 0
-
-# Check token counter
-etherscan-cli contract:read NelHarkNFT42 getTokenIdCounter
+# View metadata
+https://gateway.pinata.cloud/ipfs/YOUR_METADATA_CID
 ```
 
----
+## Minted Tokens
 
-## Security Features
+| Token ID | Owner | URI | Tx Hash |
+|----------|-------|-----|---------|
+| 0 | `0x09f9...` | `ipfs://bafki...` | [`0xf62e...`](https://sepolia.etherscan.io/tx/0xf62ebdd26ad5644d84329cd676f55907dcacda41e9025e0601da8741f48983f8) |
 
-✅ **Only owner can mint** - `onlyOwner` modifier
-✅ **Safe minting** - Uses `_safeMint()` to prevent accidents
-✅ **Valid addresses** - Checks `to != address(0)`
-✅ **Non-empty URI** - Validates token URI
-✅ **Immutable metadata** - Once set, URI cannot be changed
+## Security
 
----
-
-## Next Steps
-
-1. ✅ Deploy NFT contract
-2. ✅ Upload metadata.json to IPFS
-3. ✅ Update mint.js with metadata CID
-4. ✅ Mint your first NFT
-5. View on Etherscan and OpenSea
-6. Consider multi-NFT drops with variations
-
----
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| `nft-deployment-info.json not found` | Run `npm run deploy` first |
-| `Contract ABI not found` | Run `npm run compile` first |
-| `Invalid address` | Ensure recipient address is valid (0x...) |
-| `Token URI cannot be empty` | Ensure metadata CID is provided |
-| Minting fails with permission error | Only contract owner can mint |
-| Metadata not loading | Verify IPFS CID is correct |
-
----
+✅ Owner-only minting
+✅ Safe minting prevents accidents
+✅ Address validation
+✅ URI validation
+✅ Immutable metadata
 
 ## References
 

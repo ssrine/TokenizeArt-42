@@ -1,9 +1,20 @@
 {
-  "contractAddress": "0x53F8AA4c16DBd787a906c762E091180CCF0B0338",
+  "contractAddress": "0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B",
   "contractName": "NelHarkNFT42",
   "ownerAddress": "0x09f963232EEF8b4a25752AeF491d695d287ff6F3",
   "chainId": 11155111,
-  "blockExplorerUrl": "https://sepolia.etherscan.io/address/0x53F8AA4c16DBd787a906c762E091180CCF0B0338",
-  "deployedAt": "2026-03-28T17:14:01.158Z",
-  "network": "sepolia"
+  "blockExplorerUrl": "https://sepolia.etherscan.io/address/0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B",
+  "deployedAt": "2026-03-30T17:35:27.352Z",
+  "network": "sepolia",
+  "mintedTokens": [
+    {
+      "tokenId": "0",
+      "owner": "0x09f963232EEF8b4a25752AeF491d695d287ff6F3",
+      "uri": "ipfs://bafkreiby4bfe23bdaheoh6nocs3vovrlj4733e2ovc5s7tefdlv55p4tci",
+      "txHash": "0xf62ebdd26ad5644d84329cd676f55907dcacda41e9025e0601da8741f48983f8",
+      "blockNumber": 10555073,
+      "gasUsed": "185486",
+      "mintedAt": "2026-03-30T17:37:04.914Z"
+    }
+  ]
 }

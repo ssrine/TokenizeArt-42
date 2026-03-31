@@ -1,59 +1,48 @@
-# NelHarkNFT42 Contract Reference
+# NelHarkNFT42 Contract
 
-## Overview
+ERC721 NFT contract with IPFS metadata storage and ownership verification.
 
-ERC721 NFT contract enabling IPFS-based metadata storage and on-chain ownership verification.
-
-**Deployed Address:** `0x53F8AA4c16DBd787a906c762E091180CCF0B0338`
-
-## Specifications
+## Details
 
 | Property | Value |
 |----------|-------|
+| Address | [`0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B`](https://sepolia.etherscan.io/address/0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B) |
 | Name | NelHarkNFT42 |
 | Symbol | NH42NFT |
+| Network | Sepolia |
 | Standard | ERC721URIStorage |
-| Solidity | 0.8.24 |
-| EVM | Cancun |
+| Solidity | 0.8.20 |
 
-## Core Functions
+## Functions
 
-### Minting
+**Minting:**
 ```solidity
-function mintNFT(address to, string memory nftTokenURI) external onlyOwner
+mintNFT(address to, string memory nftTokenURI) external onlyOwner returns (uint256)
 ```
-- Creates new NFT with IPFS metadata URI
-- Only contract owner can mint
-- Auto-increments token ID
+Owner-only minting with auto-incrementing token ID.
 
-### Queries
+**Reading:**
 ```solidity
-function tokenURI(uint256 tokenId) external view returns (string memory)
-function ownerOf(uint256 tokenId) external view returns (address)
-function getTokenIdCounter() external view returns (uint256)
+tokenURI(uint256 tokenId) external view returns (string memory)
+ownerOf(uint256 tokenId) external view returns (address)
+getTokenIdCounter() external view returns (uint256)
 ```
 
-## Metadata Format
+## Metadata
 
-All NFTs reference IPFS JSON metadata:
-
+Store IPFS URI pointing to JSON metadata:
 ```json
 {
   "name": "NelHark42 NFT",
-  "description": "My first NFT for 42 project",
-  "image": "ipfs://bafybeievtj6y57t6ezjuyr2b7gf2w7z2drqk5nnde5ewuglgywz32gz4jq",
-  "attributes": [
-    {
-      "trait_type": "Artist",
-      "value": "nel-hark"
-    }
-  ]
+  "description": "Professional ERC721 NFT",
+  "image": "ipfs://...",
+  "attributes": [{"trait_type": "Artist", "value": "nel-hark"}]
 }
 ```
 
-## OpenZeppelin Dependencies
+## Dependencies
 
-- `ERC721` - NFT standard
-- `ERC721URIStorage` - Metadata URI storage
-- `Ownable` - Access control
+- `ERC721` - Standard NFT
+- `ERC721URIStorage` - URI storage
+- `Ownable` - Owner control
 

@@ -1,53 +1,81 @@
-# NelHarkNFT42 - Whitepaper
+# TokenizeArt - NelHarkNFT42
 
-## Overview
+Professional ERC721 NFT contract for digital art tokenization on Ethereum Sepolia with decentralized IPFS metadata.
 
-ERC721 NFT smart contract for digital art tokenization on Ethereum Sepolia with IPFS metadata integration.
+## Contract
 
-## Key Features
-
-- **Owner-Only Minting:** Only contract owner can create NFTs
-- **IPFS Metadata:** Decentralized storage via IPFS
-- **On-Chain Verification:** Ownership and URI verification
-- **OpenSea Compatible:** Standard ERC721URIStorage
-
-## Specifications
-
-| Property | Value |
-|----------|-------|
-| Contract | NelHarkNFT42 |
+| Property | Details |
+|----------|---------|
+| Address | [`0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B`](https://sepolia.etherscan.io/address/0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B) |
+| Name | NelHarkNFT42 |
+| Symbol | NH42NFT |
 | Standard | ERC721URIStorage |
 | Network | Sepolia |
-| Address | 0x53F8AA4c16DBd787a906c762E091180CCF0B0338 |
+| Owner | `0x09f963232EEF8b4a25752AeF491d695d287ff6F3` |
+
+## Features
+
+✅ **Owner-Controlled Minting** - Only owner can create NFTs
+✅ **IPFS Integration** - Decentralized metadata storage
+✅ **On-Chain Verification** - Immutable ownership records
+✅ **OpenSea Compatible** - ERC721 standard compliance
+✅ **Secure Design** - OpenZeppelin audited libraries
+
+## Architecture
+
+**Smart Contract** (Solidity 0.8.20)
+- `mintNFT()` - Create NFT with metadata URI
+- `ownerOf()` - Verify token ownership
+- `tokenURI()` - Retrieve metadata URI
+- `getTokenIdCounter()` - Check total mints
+
+**Metadata Storage** (IPFS)
+- JSON files describing NFT properties
+- Content-addressed for immutability
+- Accessible via gateways (Pinata, Infura, etc.)
+
+**Deployment** (Ethereum Sepolia)
+- Testnet deployment with live contracts
+- Verified on Etherscan
+- Production-ready code patterns
+
+## Technical Stack
+
+- **Blockchain:** Ethereum (Sepolia testnet)
+- **Smart Contract:** Solidity 0.8.20
+- **Storage:** IPFS (decentralized)
+- **Libraries:** OpenZeppelin Contracts
+- **Tools:** Hardhat, ethers.js
+- **Standard:** ERC721URIStorage
 
 ## Use Cases
 
-- Digital art tokenization
-- NFT learning and development
-- Blockchain integration testing
-- Decentralized artwork ownership
+- Digital art tokenization and ownership
+- NFT development and testing
+- Blockchain learning and implementation
+- Decentralized artwork marketplace integration
+- Artist portfolio showcasing
 
-## Security
+## Security Considerations
 
-- OpenZeppelin audited contracts
-- Owner-restricted minting
-- Immutable on-chain deployment
-- IPFS content-addressed storage
+✅ OpenZeppelin audited standard contracts
+✅ Owner-restricted critical functions
+✅ Immutable on-chain records
+✅ Content-addressed storage prevents tampering
+✅ Safe minting practices prevent accidents
 
-## Glossary
+## Token Status
 
-| Term | Definition |
-|------|-----------|
-| **NFT** | Non-Fungible Token - unique digital asset |
-| **ERC721** | Ethereum standard for NFTs |
-| **IPFS** | Decentralized storage network |
-| **Metadata** | JSON file describing NFT properties |
-| **Token URI** | Link to metadata stored on IPFS |
-| **Solidity** | Programming language for smart contracts |
-| **Ethereum** | Blockchain platform |
-| **Testnet** | Test network with free ETH |
-| **Owner** | Address with minting permissions |
-| **Immutable** | Cannot be changed after deployment |
+| Metric | Value |
+|--------|-------|
+| Total Minted | 1 |
+| Contract Status | Active |
+| Deployment Date | 2026-03-30 17:35:27 UTC |
+| Network Status | ✅ Live |
 
-## Conclusion
-NelHark42 is a minimal, secure, and functional ERC20 token designed to showcase core blockchain concepts.
+## References
+
+- **Contract:** [Etherscan](https://sepolia.etherscan.io/address/0x5Ff0B264a2616892b85600e13B5d8Af617F8E79B)
+- **ERC721 Standard:** [OpenZeppelin](https://docs.openzeppelin.com/contracts/4.x/erc721)
+- **IPFS:** [ipfs.io](https://ipfs.io)
+- **Sepolia Faucet:** [sepoliafaucet.com](https://sepoliafaucet.com)
